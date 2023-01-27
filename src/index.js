@@ -13,6 +13,8 @@ const refs = {
 
 const imagesApiService = new ImagesApiService();
 
+getDefaultFetchData();
+
 refs.form.addEventListener('submit', handleFormSubmit);
 
 refs.loadMore.addEventListener('click', handleLoadMoreBtnClick);
@@ -113,4 +115,17 @@ function smootherScroll() {
     top: cardHeight * 0.25,
     behavior: 'smooth',
   });
+}
+
+async function getDefaultFetchData() {
+  try {
+    const { hits } = await imagesApiService.fetchImages();
+
+    appendMarkupImage(hits);
+    lightbox.refresh();
+
+    refs.loadMore.classList.remove('is-hidden');
+  } catch (err) {
+    getMessageErr(err.message);
+  }
 }
