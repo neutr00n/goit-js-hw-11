@@ -21,7 +21,7 @@ function handleFormSubmit(event) {
   event.preventDefault();
 
   const searchInput = event.currentTarget.elements.searchQuery;
-  inputValue = searchInput.value.trim();
+  const inputValue = searchInput.value.trim();
 
   clearMarkup();
   refs.loadMore.classList.add('is-hidden');
